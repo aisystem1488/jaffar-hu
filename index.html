@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="jaffar.hu – AI automation demo lab. Practice chatbots, lead capture, and n8n workflows." />
+  <title>jaffar.hu – AI Automation Demo Lab</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="nav-logo">jaffar<span>.hu</span></a>
+        <ul class="nav-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#chatbot">Chatbot</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">🔬 Demo Lab</div>
+      <h1>
+        AI Automation<br />
+        <span class="highlight">Practice Ground</span>
+      </h1>
+      <p>
+        jaffar.hu is a hands-on demo environment for learning and showcasing
+        AI chatbots, lead capture, and automation workflows — step by step.
+      </p>
+      <div class="btn-group">
+        <a href="#features" class="btn btn-primary">Explore Features</a>
+        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Features ===== -->
+  <section class="features" id="features">
+    <div class="container">
+      <h2 class="section-title">What We're Building</h2>
+      <p class="section-subtitle">
+        Each block below is a demo module — being built and tested, one step at a time.
+      </p>
+      <div class="features-grid">
+
+        <div class="feature-card">
+          <span class="feature-icon">🤖</span>
+          <h3>AI Chatbot Integration</h3>
+          <p>
+            Practice connecting an AI assistant (e.g. OpenAI) directly to a
+            web page. See how conversations can be powered by real language models.
+          </p>
+          <span class="tag">In Progress</span>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">📋</span>
+          <h3>Lead Capture Form</h3>
+          <p>
+            A simple contact form that collects name, email, and message.
+            The foundation for connecting to CRM tools or Google Sheets.
+          </p>
+          <span class="tag">Active</span>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">⚙️</span>
+          <h3>n8n Webhook Workflows</h3>
+          <p>
+            Form submissions will trigger n8n automation workflows —
+            sending data to spreadsheets, email services, or Slack.
+          </p>
+          <span class="tag soon">Coming Soon</span>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">📊</span>
+          <h3>Google Sheets &amp; Email</h3>
+          <p>
+            Automatically log leads into a Google Sheet and send
+            confirmation emails — no backend server required.
+          </p>
+          <span class="tag soon">Coming Soon</span>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">🚀</span>
+          <h3>VS Code → GitHub → Deploy</h3>
+          <p>
+            Practice the full developer workflow: edit in VS Code,
+            push to GitHub, auto-deploy to a live domain.
+          </p>
+          <span class="tag soon">Coming Soon</span>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">🧪</span>
+          <h3>Open Sandbox</h3>
+          <p>
+            The whole site is a learning sandbox. Every feature is documented,
+            transparent, and beginner-friendly by design.
+          </p>
+          <span class="tag">Always On</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Chatbot demo ===== -->
+  <section class="chatbot-section" id="chatbot">
+    <div class="container">
+      <h2 class="section-title">Try the Demo Chatbot</h2>
+      <p class="section-subtitle">
+        A static demo for now — real AI will be wired in soon.
+      </p>
+
+      <div class="chatbot-box">
+        <div class="chatbot-header">
+          <div class="chatbot-avatar">🤖</div>
+          <div class="chatbot-header-info">
+            <strong>Jaffar AI</strong>
+            <span>Demo mode · Not connected yet</span>
+          </div>
+        </div>
+
+        <div class="chatbot-messages" id="chat-messages">
+          <div class="chat-bubble bot">
+            Hi! I'm Jaffar, your AI demo assistant. Type something below to test the chat UI. 👋
+          </div>
+        </div>
+
+        <div class="chatbot-input">
+          <input
+            type="text"
+            id="chat-input"
+            placeholder="Type a message…"
+            autocomplete="off"
+          />
+          <button id="chat-send" aria-label="Send message">➤</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact / Lead capture ===== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-wrapper">
+
+        <div class="contact-info">
+          <h2>Get in Touch</h2>
+          <p>
+            Interested in AI automation, chatbots, or just want to follow
+            the progress of this demo project? Drop us a message.
+          </p>
+          <ul>
+            <li>
+              <span class="icon">📍</span>
+              <span>Budapest, Hungary</span>
+            </li>
+            <li>
+              <span class="icon">🌐</span>
+              <span>jaffar.hu (coming soon)</span>
+            </li>
+            <li>
+              <span class="icon">💡</span>
+              <span>AI &amp; Automation demos</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="contact-form">
+          <form id="contact-form" novalidate>
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Jane Doe"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="jane@example.com"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="What would you like to know?"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;">
+              Send Message
+            </button>
+            <p class="form-status" id="form-status"></p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <div class="container">
+      <p>
+        &copy; 2025 <a href="#">jaffar.hu</a> — AI Automation Demo Lab ·
+        Built with ❤️ step by step
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
