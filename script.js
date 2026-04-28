@@ -1,1 +1,1 @@
-console.log("Jaffar site loaded");
+console.log("Jaffar.hu landing page loaded");

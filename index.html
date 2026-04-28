@@ -3,15 +3,76 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jaffar</title>
+    <title>Jaffar.hu - AI chatbot demo</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="#">Jaffar.hu</a>
+      </div>
+    </header>
+
     <main>
-      <h1>Jaffar.hu működik</h1>
-      <p>Ez az új gyakorló landing oldal helyi tesztverziója.</p>
-      <button>Teszt gomb</button>
+      <section class="hero container">
+        <h1>AI chatbotok és automatizmusok gyakorlótere</h1>
+        <p>
+          Egy bemutató oldal, ahol chatbotokat, űrlapokat és automatizált
+          folyamatokat tesztelek.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#chatbot-demo">Chatbot demo</a>
+          <a class="button secondary" href="#automation-demo">Automatizmusok</a>
+        </div>
+      </section>
+
+      <section class="section container" id="features">
+        <h2>Mit tud majd ez az oldal?</h2>
+        <div class="feature-grid">
+          <article class="card">AI chatbot demo</article>
+          <article class="card">Érdeklődő gyűjtés</article>
+          <article class="card">Űrlap automatizmus</article>
+          <article class="card">Google Sheet / e-mail értesítés</article>
+        </div>
+      </section>
+
+      <section class="section container" id="chatbot-demo">
+        <h2>Chatbot demo</h2>
+        <div class="chatbox">
+          <div class="chat-message">Valódi AI chatbot hamarosan.</div>
+        </div>
+      </section>
+
+      <section class="section container" id="automation-demo">
+        <h2>Automatizmus demo</h2>
+        <div class="workflow">
+          <span>Látogató üzenetet ír</span>
+          <span class="arrow">→</span>
+          <span>Adat mentése</span>
+          <span class="arrow">→</span>
+          <span>Értesítés küldése</span>
+        </div>
+      </section>
+
+      <section class="section container" id="contact">
+        <h2>Kapcsolat</h2>
+        <form class="contact-form">
+          <label>
+            Név
+            <input type="text" name="name" placeholder="Név" />
+          </label>
+          <label>
+            E-mail
+            <input type="email" name="email" placeholder="pelda@email.hu" />
+          </label>
+          <label>
+            Üzenet
+            <textarea name="message" rows="4" placeholder="Írd ide az üzeneted..."></textarea>
+          </label>
+          <button type="button" disabled>Küldés hamarosan</button>
+        </form>
+      </section>
     </main>
   </body>
 </html>
