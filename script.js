@@ -10,16 +10,36 @@ function addMessage(text, role) {
   msg.textContent = text;
   chatLog.appendChild(msg);
   chatLog.scrollTop = chatLog.scrollHeight;
+  return msg;
 }
 
-function handleSend() {
+async function handleSend() {
   var text = chatInput.value.trim();
   if (!text) return;
+
   addMessage(text, "user");
   chatInput.value = "";
-  setTimeout(function () {
-    addMessage("Ez még csak demo válasz. A valódi AI chatbot hamarosan érkezik.", "bot");
-  }, 800);
+
+  var thinkingMessage = addMessage("Gondolkodom...", "bot");
+
+  try {
+    var response = await fetch("https://jaffar-hu.app.n8n.cloud/webhook-test/jaffar-chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ message: text })
+    });
+
+    if (!response.ok) {
+      throw new Error("Request failed");
+    }
+
+    var data = await response.json();
+    thinkingMessage.textContent = data.reply || "Hiba történt. Kérlek próbáld újra később.";
+  } catch (error) {
+    thinkingMessage.textContent = "Hiba történt. Kérlek próbáld újra később.";
+  }
 }
 
 chatSend.addEventListener("click", handleSend);
