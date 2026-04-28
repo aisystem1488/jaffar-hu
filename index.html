@@ -40,7 +40,18 @@
       <section class="section container" id="chatbot-demo">
         <h2>Chatbot demo</h2>
         <div class="chatbox">
-          <div class="chat-message">Valódi AI chatbot hamarosan.</div>
+          <div class="chat-log" id="chat-log">
+            <div class="chat-message bot">Valódi AI chatbot hamarosan.</div>
+          </div>
+          <div class="chat-input-row">
+            <input
+              type="text"
+              id="chat-input"
+              placeholder="Írj egy üzenetet..."
+              autocomplete="off"
+            />
+            <button id="chat-send">Küldés</button>
+          </div>
         </div>
       </section>
 

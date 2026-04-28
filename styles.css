@@ -129,14 +129,61 @@ main {
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 1rem;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.chat-log {
+  display: grid;
+  gap: 0.5rem;
+  max-height: 260px;
+  overflow-y: auto;
 }
 
 .chat-message {
+  padding: 0.65rem 0.9rem;
+  border-radius: 8px;
+  max-width: 80%;
+  line-height: 1.4;
+}
+
+.chat-message.bot {
   background-color: var(--surface-2);
   border-left: 4px solid var(--accent);
-  padding: 0.75rem 0.9rem;
-  border-radius: 8px;
   color: var(--muted);
+  align-self: flex-start;
+}
+
+.chat-message.user {
+  background-color: #1a3a5c;
+  border-left: 4px solid var(--accent-2);
+  color: var(--text);
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.chat-input-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.chat-input-row input {
+  flex: 1;
+  border: 1px solid var(--border);
+  background-color: var(--surface-2);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 0.65rem 0.7rem;
+}
+
+.chat-input-row button {
+  padding: 0.65rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--accent);
+  color: #201002;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .workflow {
