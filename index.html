@@ -5,181 +5,185 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Jaffar.hu — AI engineering demók: sales agent, lead minősítés, automatizmusok."
+      content="Jaffar.hu — AI sales agent demó: lead minősítés, ajánlat, értékesítői összefoglaló."
     />
-    <title>Jaffar.hu — AI engineering demók</title>
+    <title>Jaffar.hu — AI sales agent demó</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
     <div class="demo-banner" role="status">
-      Belső teszt demó — még nem publikus. Élő URL: Vercel preview.
+      Belső demó — még nem publikus
     </div>
+
     <header class="site-header">
       <div class="container header-inner">
         <a class="brand" href="#">Jaffar.hu</a>
-        <span class="brand-tag">AI engineering</span>
+        <nav class="nav-links">
+          <a href="#sales-demo">Demó</a>
+          <a href="#flow">Folyamat</a>
+          <a href="admin.html">Admin</a>
+        </nav>
       </div>
     </header>
 
     <main>
-      <section class="hero container">
-        <p class="eyebrow">Magán demó projekt</p>
-        <h1>AI sales agentek és automatizmusok — gyakorlótere</h1>
-        <p>
-          Jaffar.hu alatt AI-alapú értékesítési ügynököket, lead minősítést és
-          workflow automatizmusokat építek. Ez az oldal egy élő demó: próbáld ki,
-          hogyan viselkedik egy B2B SaaS sales agent a valós folyamatban.
+      <section class="hero">
+        <div class="hero-atmosphere" aria-hidden="true"></div>
+        <div class="container hero-content">
+          <p class="hero-brand reveal">Jaffar.hu</p>
+          <h1 class="reveal reveal-delay-1">AI sales agent, ami minősít és ajánl</h1>
+          <p class="hero-lead reveal reveal-delay-2">
+            Élő demó: egy B2B SaaS ügynök végigviszi a látogatót igényfeltárástól
+            az értékesítői összefoglalóig.
+          </p>
+          <div class="hero-actions reveal reveal-delay-3">
+            <a class="button primary" href="#sales-demo">Próbáld ki a demót</a>
+            <a class="button secondary" href="#flow">Hogyan működik</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section container" id="flow">
+        <p class="eyebrow">Egy folyamat</p>
+        <h2>Amit az agent végigvisz</h2>
+        <p class="section-lead">
+          Nem chatbot-válaszok — strukturált értékesítési lépések, mentett leadtel.
         </p>
-        <div class="hero-actions">
-          <a class="button primary" href="#sales-demo">Sales agent demó</a>
-          <a class="button secondary" href="#how-it-works">Hogyan működik?</a>
-        </div>
+        <ol class="flow-list">
+          <li>
+            <span class="flow-num">01</span>
+            <div>
+              <h3>Igényfeltárás</h3>
+              <p>Megérti a problémát és a kontextust.</p>
+            </div>
+          </li>
+          <li>
+            <span class="flow-num">02</span>
+            <div>
+              <h3>Minősítés</h3>
+              <p>Csapat, budget, sürgősség, eszközök.</p>
+            </div>
+          </li>
+          <li>
+            <span class="flow-num">03</span>
+            <div>
+              <h3>Ajánlat</h3>
+              <p>Starter, Pro vagy Enterprise illeszkedés.</p>
+            </div>
+          </li>
+          <li>
+            <span class="flow-num">04</span>
+            <div>
+              <h3>Handoff</h3>
+              <p>Elérhetőség + értékesítői összefoglaló.</p>
+            </div>
+          </li>
+        </ol>
       </section>
 
-      <section class="section container" id="how-it-works">
-        <h2>Mit mutat a demó?</h2>
-        <div class="feature-grid">
-          <article class="card">
-            <h3>Igényfeltárás</h3>
-            <p>Megérti, mit keres a látogató és milyen problémát akar megoldani.</p>
-          </article>
-          <article class="card">
-            <h3>Lead minősítés</h3>
-            <p>3–5 célzott kérdés: csapatméret, budget, sürgősség, integrációk.</p>
-          </article>
-          <article class="card">
-            <h3>Csomag ajánlás</h3>
-            <p>Starter / Pro / Enterprise közül a legjobb illeszkedés kiválasztása.</p>
-          </article>
-          <article class="card">
-            <h3>Értékesítői összefoglaló</h3>
-            <p>Elérhetőség kérése és strukturált handoff az értékesítőnek.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section container" id="sales-demo">
-        <div class="demo-header">
-          <div>
-            <p class="eyebrow">Első vertical</p>
-            <h2>CloudFlow — B2B SaaS sales agent</h2>
-            <p class="demo-desc">
-              A chat alatt egy fiktív projektmenedzsment platform (CloudFlow)
-              értékesítési ügynöke válaszol. A landing Jaffar.hu arculatot mutat;
-              az agent a SaaS cég nevében beszél.
+      <section class="section demo-section" id="sales-demo">
+        <div class="container">
+          <div class="demo-intro">
+            <p class="eyebrow">Élő demó · CloudFlow</p>
+            <h2>Beszélj a sales agenttel</h2>
+            <p class="section-lead">
+              A Jaffar.hu arculat alatt egy fiktív B2B SaaS (CloudFlow) ügynöke
+              válaszol. A beszélgetés mentődik — az adminban látod a leadet.
             </p>
           </div>
-          <div class="package-pills">
-            <span class="pill">Starter — 29k Ft/hó</span>
-            <span class="pill">Pro — 79k Ft/hó</span>
-            <span class="pill">Enterprise — egyedi</span>
-          </div>
-        </div>
 
-        <div class="chatbox">
-          <div class="phase-track" id="phase-track" aria-label="Értékesítési fázis">
-            <div class="phase-step active" data-phase="discovery">
-              <span class="phase-dot"></span>
-              <span class="phase-label">Igényfeltárás</span>
+          <div class="chatbox">
+            <div class="phase-track" id="phase-track" aria-label="Értékesítési fázis">
+              <div class="phase-step active" data-phase="discovery">
+                <span class="phase-dot"></span>
+                <span class="phase-label">Igényfeltárás</span>
+              </div>
+              <div class="phase-step" data-phase="qualification">
+                <span class="phase-dot"></span>
+                <span class="phase-label">Minősítés</span>
+              </div>
+              <div class="phase-step" data-phase="recommendation">
+                <span class="phase-dot"></span>
+                <span class="phase-label">Ajánlat</span>
+              </div>
+              <div class="phase-step" data-phase="objection">
+                <span class="phase-dot"></span>
+                <span class="phase-label">Kifogások</span>
+              </div>
+              <div class="phase-step" data-phase="contact">
+                <span class="phase-dot"></span>
+                <span class="phase-label">Elérhetőség</span>
+              </div>
+              <div class="phase-step" data-phase="summary">
+                <span class="phase-dot"></span>
+                <span class="phase-label">Összefoglaló</span>
+              </div>
             </div>
-            <div class="phase-step" data-phase="qualification">
-              <span class="phase-dot"></span>
-              <span class="phase-label">Minősítés</span>
+
+            <div class="chat-log" id="chat-log">
+              <div class="chat-message bot">
+                Szia! CloudFlow ügyfélszolgálat vagyok. Miben segíthetek ma —
+                milyen kihívást szeretnél megoldani a csapatoddal?
+              </div>
             </div>
-            <div class="phase-step" data-phase="recommendation">
-              <span class="phase-dot"></span>
-              <span class="phase-label">Ajánlat</span>
+
+            <div class="chat-toolbar">
+              <p class="chat-meta" id="chat-meta" hidden></p>
+              <button type="button" class="button secondary chat-reset" id="chat-reset">
+                Új beszélgetés
+              </button>
             </div>
-            <div class="phase-step" data-phase="objection">
-              <span class="phase-dot"></span>
-              <span class="phase-label">Kifogások</span>
+
+            <div class="chat-input-row">
+              <input
+                type="text"
+                id="chat-input"
+                placeholder="Pl.: 12 fős csapat, Excel helyett átláthatóság kellene..."
+                autocomplete="off"
+              />
+              <button id="chat-send" type="button">Küldés</button>
             </div>
-            <div class="phase-step" data-phase="contact">
-              <span class="phase-dot"></span>
-              <span class="phase-label">Elérhetőség</span>
-            </div>
-            <div class="phase-step" data-phase="summary">
-              <span class="phase-dot"></span>
-              <span class="phase-label">Összefoglaló</span>
-            </div>
+            <p class="chat-hint" id="chat-hint" hidden>
+              A chat API jelenleg nem elérhető.
+            </p>
           </div>
 
-          <div class="chat-log" id="chat-log">
-            <div class="chat-message bot">
-              Szia! CloudFlow ügyfélszolgálat vagyok. Miben segíthetek ma — milyen
-              kihívást szeretnél megoldani a csapatoddal?
-            </div>
-          </div>
-
-          <div class="chat-toolbar">
-            <p class="chat-meta" id="chat-meta" hidden></p>
-            <button type="button" class="button secondary chat-reset" id="chat-reset">
-              Új beszélgetés
-            </button>
-          </div>
-
-          <div class="chat-input-row">
-            <input
-              type="text"
-              id="chat-input"
-              placeholder="Pl.: 12 fős csapatunknak kell projektátláthatóság..."
-              autocomplete="off"
-            />
-            <button id="chat-send" type="button">Küldés</button>
-          </div>
-          <p class="chat-hint" id="chat-hint" hidden>
-            API nincs elérhető — deploy után állítsd be a Vercel URL-t a script.js-ben.
+          <p class="demo-packages">
+            Csomagok a demóban: Starter 29&nbsp;000 Ft/hó · Pro 79&nbsp;000 Ft/hó ·
+            Enterprise egyedi
           </p>
         </div>
       </section>
 
       <section class="section container" id="stack">
-        <h2>Technológia</h2>
-        <div class="workflow">
-          <span>GitHub Pages</span>
-          <span class="arrow">→</span>
-          <span>Landing + chat UI</span>
-          <span class="arrow">→</span>
-          <span>Vercel API</span>
-          <span class="arrow">→</span>
-          <span>OpenAI + Supabase</span>
-        </div>
-      </section>
-
-      <section class="section container" id="contact">
-        <h2>Kapcsolat</h2>
-        <p class="contact-note">
-          Érdekel egy hasonló AI agent a saját vállalkozásodnak? Írj az agenten
-          keresztül, vagy hamarosan itt is lesz űrlap.
+        <p class="eyebrow">Stack</p>
+        <h2>Hogyan fut a demó</h2>
+        <p class="section-lead">
+          Statikus landing, serverless API, adatbázisban tárolt beszélgetés.
         </p>
-        <form class="contact-form">
-          <label>
-            Név
-            <input type="text" name="name" placeholder="Név" disabled />
-          </label>
-          <label>
-            E-mail
-            <input type="email" name="email" placeholder="pelda@email.hu" disabled />
-          </label>
-          <label>
-            Üzenet
-            <textarea
-              name="message"
-              rows="4"
-              placeholder="Írd ide az üzeneted..."
-              disabled
-            ></textarea>
-          </label>
-          <button type="button" disabled>Fázis 2-ben aktiváljuk</button>
-        </form>
+        <p class="stack-line">
+          <span>Landing</span>
+          <span class="stack-sep" aria-hidden="true"></span>
+          <span>Vercel API</span>
+          <span class="stack-sep" aria-hidden="true"></span>
+          <span>OpenAI</span>
+          <span class="stack-sep" aria-hidden="true"></span>
+          <span>Supabase</span>
+        </p>
       </section>
     </main>
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p>© 2026 Jaffar.hu — AI engineering demók</p>
-        <a href="admin.html">Admin</a>
+        <p>© 2026 Jaffar.hu — AI engineering demó</p>
+        <a href="admin.html">Lead admin</a>
       </div>
     </footer>
   </body>
