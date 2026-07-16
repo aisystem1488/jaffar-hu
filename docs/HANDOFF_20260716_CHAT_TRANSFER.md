@@ -111,12 +111,12 @@ Vercel = serverless API (OpenAI, Supabase) — GitHub Pages ezt nem tudja.
 - [x] Agent tool calling: qualify, recommend, capture, summarize
 - [x] `/admin`: lead lista, score, összefoglaló
 - [x] Egyszerű jelszóvédelem adminra
-- [ ] **User:** Vercel env `ADMIN_PASSWORD` beállítása + redeploy ellenőrzés
+- [x] **User:** Vercel env `ADMIN_PASSWORD` beállítása + redeploy ellenőrzés
 
 ### Fázis 3 — Domain + polish
-- [ ] Vercel deploy + env vars
-- [ ] `jaffar.hu` DNS → Vercel (vagy GitHub Pages frontend + api subdomain)
-- [ ] UI polish, mobil
+- [x] Vercel deploy + env vars (kész, teszt URL-en)
+- [ ] `jaffar.hu` DNS → Vercel — **DEFERRED** (csak ha minden kész; most nem publikus)
+- [x] UI polish, mobil (demo banner, új chat, admin részletek, score auto)
 - [ ] 3 vertical választó (marketing, SaaS, napelem) — opcionális később
 
 ---

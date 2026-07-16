@@ -467,6 +467,62 @@ main {
   padding: 1rem;
 }
 
+.demo-banner {
+  background: linear-gradient(90deg, #1a3a5c, #12345c);
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+  text-align: center;
+  font-size: 0.82rem;
+  padding: 0.45rem 0.8rem;
+}
+
+.chat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.chat-meta {
+  font-size: 0.82rem;
+  color: var(--accent-2);
+}
+
+.chat-reset {
+  padding: 0.4rem 0.7rem;
+  font-size: 0.82rem;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+}
+
+.detail-grid div {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.detail-grid strong,
+.detail-block strong {
+  color: var(--accent-2);
+  font-size: 0.8rem;
+}
+
+.detail-grid span,
+.detail-block {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.detail-block {
+  margin-top: 0.9rem;
+  line-height: 1.45;
+}
+
 .admin-detail pre {
   margin-top: 0.6rem;
   white-space: pre-wrap;
@@ -501,5 +557,30 @@ main {
 
   .phase-label {
     font-size: 0.62rem;
+  }
+
+  .chat-log {
+    max-height: 280px;
+  }
+
+  .chat-message {
+    max-width: 95%;
+  }
+
+  .chat-input-row {
+    flex-direction: column;
+  }
+
+  .chat-input-row button {
+    width: 100%;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .demo-banner {
+    font-size: 0.75rem;
+    text-align: left;
   }
 }

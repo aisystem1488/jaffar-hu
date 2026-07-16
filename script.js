@@ -16,6 +16,8 @@ var chatLog = document.getElementById("chat-log");
 var chatInput = document.getElementById("chat-input");
 var chatSend = document.getElementById("chat-send");
 var chatHint = document.getElementById("chat-hint");
+var chatMeta = document.getElementById("chat-meta");
+var chatReset = document.getElementById("chat-reset");
 var phaseTrack = document.getElementById("phase-track");
 
 function getSessionId() {
@@ -24,6 +26,21 @@ function getSessionId() {
   var id = "sess_" + Date.now() + "_" + Math.random().toString(36).slice(2, 10);
   localStorage.setItem(SESSION_KEY, id);
   return id;
+}
+
+function resetSession() {
+  localStorage.removeItem(SESSION_KEY);
+  chatLog.innerHTML = "";
+  addMessage(
+    "Szia! CloudFlow ügyfélszolgálat vagyok. Miben segíthetek ma — milyen kihívást szeretnél megoldani a csapatoddal?",
+    "bot"
+  );
+  updatePhaseIndicator("discovery");
+  if (chatMeta) {
+    chatMeta.hidden = true;
+    chatMeta.textContent = "";
+  }
+  chatInput.focus();
 }
 
 function addMessage(text, role) {
@@ -38,6 +55,7 @@ function addMessage(text, role) {
 function setLoading(isLoading) {
   chatSend.disabled = isLoading;
   chatInput.disabled = isLoading;
+  if (chatReset) chatReset.disabled = isLoading;
 }
 
 function updatePhaseIndicator(phase) {
@@ -57,6 +75,20 @@ function updatePhaseIndicator(phase) {
       step.classList.add("active");
     }
   });
+}
+
+function updateChatMeta(data) {
+  if (!chatMeta) return;
+  var bits = [];
+  if (data.score != null) bits.push("Score: " + data.score);
+  if (data.recommendedProduct) bits.push("Csomag: " + data.recommendedProduct);
+  if (data.leadId) bits.push("Lead mentve");
+  if (!bits.length) {
+    chatMeta.hidden = true;
+    return;
+  }
+  chatMeta.hidden = false;
+  chatMeta.textContent = bits.join(" · ");
 }
 
 async function handleSend() {
@@ -95,6 +127,7 @@ async function handleSend() {
 
     thinkingMessage.textContent = data.reply || "Nem kaptam választ. Próbáld újra.";
     updatePhaseIndicator(data.phase || "discovery");
+    updateChatMeta(data);
   } catch (error) {
     thinkingMessage.textContent =
       "A chat API jelenleg nem elérhető. Ellenőrizd a Vercel deployt és az API URL-t.";
@@ -110,6 +143,10 @@ chatSend.addEventListener("click", handleSend);
 chatInput.addEventListener("keydown", function (event) {
   if (event.key === "Enter") handleSend();
 });
+
+if (chatReset) {
+  chatReset.addEventListener("click", resetSession);
+}
 
 document.querySelectorAll("a[href^='#']").forEach(function (link) {
   link.addEventListener("click", function (event) {

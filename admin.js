@@ -39,6 +39,14 @@ function formatDate(iso) {
   }
 }
 
+function escapeHtml(value) {
+  return String(value == null ? "" : value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 function renderLeads(leads) {
   cachedLeads = leads || [];
   leadsBody.innerHTML = "";
@@ -55,19 +63,19 @@ function renderLeads(leads) {
     tr.dataset.index = String(index);
     tr.innerHTML =
       "<td>" +
-      formatDate(lead.created_at) +
+      escapeHtml(formatDate(lead.created_at)) +
       "</td><td>" +
-      (lead.name || "—") +
+      escapeHtml(lead.name || "—") +
       "</td><td>" +
-      (lead.email || "—") +
+      escapeHtml(lead.email || "—") +
       "</td><td>" +
-      (lead.company || "—") +
+      escapeHtml(lead.company || "—") +
       "</td><td>" +
-      (lead.score != null ? lead.score : "—") +
+      (lead.score != null ? escapeHtml(String(lead.score)) : "—") +
       "</td><td>" +
-      (lead.recommended_product || "—") +
+      escapeHtml(lead.recommended_product || "—") +
       "</td><td>" +
-      (lead.phase || "—") +
+      escapeHtml(lead.phase || "—") +
       "</td>";
     leadsBody.appendChild(tr);
   });
@@ -75,24 +83,46 @@ function renderLeads(leads) {
 
 function showLeadDetail(lead) {
   detail.hidden = false;
-  detailBody.textContent = JSON.stringify(
-    {
-      name: lead.name,
-      email: lead.email,
-      company: lead.company,
-      score: lead.score,
-      recommended_product: lead.recommended_product,
-      phase: lead.phase,
-      summary: lead.summary,
-      next_step: lead.next_step,
-      qualification: lead.qualification,
-      session_id: lead.session_id,
-      conversation_id: lead.conversation_id,
-      created_at: lead.created_at
-    },
-    null,
-    2
-  );
+  var q = lead.qualification || {};
+  detailBody.innerHTML =
+    '<div class="detail-grid">' +
+    "<div><strong>Név</strong><span>" +
+    escapeHtml(lead.name || "—") +
+    "</span></div>" +
+    "<div><strong>Email</strong><span>" +
+    escapeHtml(lead.email || "—") +
+    "</span></div>" +
+    "<div><strong>Cég</strong><span>" +
+    escapeHtml(lead.company || "—") +
+    "</span></div>" +
+    "<div><strong>Score</strong><span>" +
+    (lead.score != null ? escapeHtml(String(lead.score)) : "—") +
+    "</span></div>" +
+    "<div><strong>Csomag</strong><span>" +
+    escapeHtml(lead.recommended_product || "—") +
+    "</span></div>" +
+    "<div><strong>Fázis</strong><span>" +
+    escapeHtml(lead.phase || "—") +
+    "</span></div>" +
+    "</div>" +
+    '<p class="detail-block"><strong>Összefoglaló</strong><br />' +
+    escapeHtml(lead.summary || "—") +
+    "</p>" +
+    '<p class="detail-block"><strong>Következő lépés</strong><br />' +
+    escapeHtml(lead.next_step || "—") +
+    "</p>" +
+    '<p class="detail-block"><strong>Minősítés</strong><br />' +
+    "Csapat: " +
+    escapeHtml(q.team_size || "—") +
+    "<br />Budget: " +
+    escapeHtml(q.budget || "—") +
+    "<br />Sürgősség: " +
+    escapeHtml(q.urgency || "—") +
+    "<br />Eszközök: " +
+    escapeHtml(q.current_tools || "—") +
+    "<br />Pain: " +
+    escapeHtml(q.pain_point || "—") +
+    "</p>";
 }
 
 async function loadLeads() {
