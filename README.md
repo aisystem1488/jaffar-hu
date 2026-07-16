@@ -1,20 +1,34 @@
 # jaffar-hu
 
-**Jaffar.hu** — AI sales agent demó oldal (magán projekt).
+**Jaffar.hu** — AI engineering demó- és portfólió oldal (magán projekt, nem QX).
 
-- **Vercel (élő + API):** https://jaffar-hu.vercel.app/
-- **GitHub Pages:** https://aisystem1488.github.io/jaffar-hu/
+- **Élő (Vercel):** https://jaffar-hu.vercel.app/
+- **GitHub Pages:** https://aisystem1488.github.io/jaffar-hu/ (statikus; API a Vercelre megy)
 - **Admin:** https://jaffar-hu.vercel.app/admin.html
-- **Stack:** GitHub Pages + Vercel API + Supabase + OpenAI
+- **Stack:** Vercel API + Supabase + OpenAI (+ GitHub Pages opcionális frontend)
 
-## Fázis 1–2 — mit tartalmaz
+> Domain (`jaffar.hu`): **még nincs bekötve** — belső teszt, nem publikus launch.
 
-- Landing: Jaffar.hu brand + CloudFlow SaaS demó + fázisjelző
-- Chat API: `POST /api/chat` (OpenAI tool calling)
-- Tools: `qualify_lead`, `recommend_product`, `capture_contact`, `summarize_lead`
-- Leads API: `GET /api/leads` (jelszó: `x-admin-password`)
-- Admin UI: lead lista, score, összefoglaló
-- Supabase: `conversations`, `messages`, `leads`
+## Élő demók (kipróbálható)
+
+| # | Demó | URL | API |
+|---|---|---|---|
+| 01 | Sales agent | `/` (#sales-demo) | `POST /api/chat` |
+| 02 | Support triage | `/support.html` | `POST /api/triage` |
+| 03 | Doc Q&A (RAG) | `/docs.html` | `POST /api/ask` |
+| 04 | Meeting summarizer | `/meeting.html` | `POST /api/summarize` |
+| — | Lead admin | `/admin.html` | `GET /api/leads` |
+
+## Szolgáltatások (prezentáció, nem élő demó)
+
+A landing `#services` szekciója — üzleti irányok, amiket tervezünk / szállítunk:
+
+1. Webes kutató és versenyfigyelő  
+2. Ár- és árrésfigyelő (Pricing & Margin Monitor)  
+3. Hangagentek  
+4. Kameraelemzés (szűk use case)
+
+Vezetői dashboard ötlet: **félretéve**.
 
 ## Env vars (Vercel)
 
@@ -26,6 +40,14 @@ OPENAI_MODEL=gpt-4o-mini
 ADMIN_PASSWORD=...
 ```
 
+## Supabase
+
+1. `supabase/schema.sql` — conversations, messages, leads  
+2. `supabase/tickets.sql` — support triage mentés  
+3. `supabase/meetings.sql` — meeting összefoglalók  
+
+Részletek: [`supabase/SETUP.md`](supabase/SETUP.md)
+
 ## Helyi fejlesztés
 
 ```bash
@@ -33,7 +55,9 @@ npm install
 npx vercel dev
 ```
 
+Frontend `API_BASE` a `script.js` / `support.js` / `docs.js` / `meeting.js` / `admin.js` fájlokban.
+
 ## Dokumentáció
 
-- [`START_HERE.md`](START_HERE.md)
-- [`docs/HANDOFF_20260716_CHAT_TRANSFER.md`](docs/HANDOFF_20260716_CHAT_TRANSFER.md)
+- [`START_HERE.md`](START_HERE.md) — új chat indítás
+- [`docs/HANDOFF_20260716_CHAT_TRANSFER.md`](docs/HANDOFF_20260716_CHAT_TRANSFER.md) — döntések + állapot

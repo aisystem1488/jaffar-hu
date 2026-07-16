@@ -1,7 +1,7 @@
-# CHAT TRANSFER — 2026-07-16 — Jaffar.hu AI Sales Agent Demo
+# CHAT TRANSFER — Jaffar.hu AI Engineering
 
-> **Olvasd el ezt először**, ha új Cursor chatben folytatod a munkát.
-> Ez a fájl a korábbi beszélgetés döntéseit és állapotát rögzíti.
+> **Olvasd el ezt először**, ha új Cursor chatben folytatod.
+> Utoljára frissítve: 2026-07-16
 
 ---
 
@@ -9,222 +9,161 @@
 
 | Mező | Érték |
 |---|---|
-| **Név** | Jaffar.hu — AI engineering demó oldal |
-| **Típus** | **Magán projekt** (NEM kapcsolódik a QX munkához) |
+| **Név** | Jaffar.hu — AI engineering demó / portfólió |
+| **Típus** | **Magán projekt** (NEM QX) |
 | **Helyi mappa** | `C:\Projects\jaffar-hu` |
 | **GitHub** | `https://github.com/aisystem1488/jaffar-hu` |
-| **Élő statikus oldal** | `https://aisystem1488.github.io/jaffar-hu/` |
-| **Domain** | `jaffar.hu` — jelenleg **más oldal** fut rajta (EZY kávés webshop); domain bekötés **később** |
+| **Élő** | `https://jaffar-hu.vercel.app/` |
+| **GitHub Pages** | `https://aisystem1488.github.io/jaffar-hu/` |
+| **Domain** | `jaffar.hu` — **később** (most EZY webshop; nem kötjük be amíg nincs kész launch) |
 
 ---
 
-## Mit építünk?
+## Mi ez?
 
-**Általánosítható AI sales agent demó** — nem egyszerű chatbot.
+AI engineering bemutató:
 
-Agent folyamat (cél):
-1. Megérti, mit keres a látogató
-2. 3–5 releváns kérdés (minősítés)
-3. Lead minősítés (budget, sürgősség, fit)
-4. Termék/csomag ajánlás
-5. Kifogáskezelés
-6. Elérhetőség kérése
-7. Értékesítői összefoglaló
-8. (Opcionális) ajánlatkérés / időpont szimuláció
+1. **Élő demók** — kipróbálható agentek (OpenAI + tool / RAG)
+2. **Szolgáltatások** — prezentáció a landingen (`#services`), nem élő API
 
-**Landing arculat:** `Jaffar.hu` = AI engineering vállalkozás (te).
-**Első demó vertical:** fiktív **B2B SaaS** cég (Starter / Pro / Enterprise csomagok).
-A „vertical” ≠ landing design — a demóban az agent egy szoftvercég ügynökeként viselkedik.
-
-**Nyelv:** magyar (első körben).
+**Nyelv:** magyar.  
+**Fiktív brand a demókban:** CloudFlow (B2B SaaS).  
+**Landing brand:** Jaffar.hu.
 
 ---
 
-## Architektúra (elfogadott)
+## Architektúra
 
 ```
-jaffar.hu (domain, később)
-    │
-    ├── GitHub Pages ──→ index.html, styles.css, script.js  (landing + chat UI)
-    │
-    └── Vercel API ──→ /api/chat, /api/leads, /admin
-                            │
-                            └── Supabase (conversations, messages, leads)
+jaffar-hu.vercel.app
+    ├── Statikus: index, support, docs, meeting, admin
+    └── API: /api/chat, /api/triage, /api/ask, /api/summarize, /api/leads
+            └── Supabase + OpenAI
 ```
 
-**n8n: KIKAPCSOLVA / NEM HASZNÁLJUK.** Előfizetés lemondva.
-A `script.js` még n8n webhookot hív — ezt le kell cserélni Vercel API-ra.
-
-**Miért hibrid?** GitHub Pages = ingyenes statikus deploy (push → élő).
-Vercel = serverless API (OpenAI, Supabase) — GitHub Pages ezt nem tudja.
+**n8n: NEM használjuk.**
 
 ---
 
-## Infrastruktúra állapot (2026-07-16)
+## Élő demók
 
-| Szolgáltatás | Állapot | Megjegyzés |
-|---|---|---|
-| **GitHub repo** | ✅ Kész | `aisystem1488/jaffar-hu`, GitHub Pages aktív |
-| **OpenAI API** | ✅ Van kulcs | Usernek megvan; env var-ként Vercelre |
-| **Supabase** | ⏳ Fiók van, projekt létrehozása folyamatban | Új projekt neve javasolt: `jaffar-demo`, region: Frankfurt |
-| **Vercel** | ⏳ Fiók létrehozva | User: István Priskin, GitHub összekötve. **Projekt még NINCS importálva** — várjuk a kódot |
-| **n8n cloud** | ❌ Lemondva | Ne használd |
-| **jaffar.hu domain** | ⏳ Később | Most ne kösd be; előbb működő deploy kell |
-
-### Vercel — mit csinált a user
-- Regisztrált: vercel.com, GitHub login
-- Van egy régi projekt: `aw-report-demo` — **ne ezt használd**
-- **Még nem importálta** a `jaffar-hu` repót (szándékosan — előbb API kód kell)
-
-### Supabase — következő user lépés
-1. supabase.com/dashboard → New Project
-2. Név: `jaffar-demo`
-3. Region: Frankfurt (eu-central-1)
-4. Jelszó: generáld, mentsd el
-5. Kulcsok → Vercel env vars (NE commitold a repóba)
+| Demó | Frontend | API | Megjegyzés |
+|---|---|---|---|
+| Sales agent | `index.html` #sales-demo | `POST /api/chat` | tools: qualify, recommend, capture, summarize → `leads` |
+| Support triage | `support.html` | `POST /api/triage` | ticket kártya; mentés: `tickets` tábla |
+| Doc Q&A | `docs.html` | `POST /api/ask` | embedding retrieval + citations |
+| Meeting summarizer | `meeting.html` | `POST /api/summarize` | döntések, action itemek, e-mail; `meeting_summaries` |
+| Admin | `admin.html` | `GET /api/leads` | header: `x-admin-password` |
 
 ---
 
-## Amit az első verzióba NEM teszünk
+## Szolgáltatások (prezentáció only)
 
-- Valódi CRM integráció
-- Valódi email küldés (később Resend free tier)
-- Telefonos / hang agent
-- Több agent együttműködés
-- Ügyfélfiókok
-- n8n / Make / Zapier
+Landing `#services` — **nincs élő demó / API** ezekre:
 
----
+1. Webes kutató és versenyfigyelő  
+2. Ár- és árrésfigyelő (Pricing & Margin Monitor, nem auto-pricing)  
+3. Hangagentek  
+4. Kameraelemzés (szűk use case, pl. sérült csomagolás)
 
-## Mérföldkövek
-
-### Fázis 1 — Landing + működő chat (első)
-- [x] Landing copy: Jaffar.hu AI engineering brand
-- [x] Demó szekció + chat UI fejlesztés (fázisjelző)
-- [x] Vercel API: `/api/chat` (OpenAI)
-- [x] Supabase séma: conversations, messages, leads
-- [x] `script.js`: n8n webhook → Vercel API URL
-- [x] SaaS vertical seed adat (3 csomag, minősítő kérdések)
-- [x] **User:** Supabase projekt + séma futtatás + Vercel import + env vars + deploy
-
-### Fázis 2 — Sales agent + admin
-- [x] Agent tool calling: qualify, recommend, capture, summarize
-- [x] `/admin`: lead lista, score, összefoglaló
-- [x] Egyszerű jelszóvédelem adminra
-- [x] **User:** Vercel env `ADMIN_PASSWORD` beállítása + redeploy ellenőrzés
-
-### Fázis 3 — Domain + polish
-- [x] Vercel deploy + env vars (kész, teszt URL-en)
-- [ ] `jaffar.hu` DNS → Vercel — **DEFERRED** (csak ha minden kész; most nem publikus)
-- [x] UI polish, mobil (demo banner, új chat, admin részletek, score auto)
-- [ ] 3 vertical választó (marketing, SaaS, napelem) — opcionális később
+**Javasolt későbbi build sorrend** (ha élő demót csinálnánk): versenyfigyelő → árrés → hang → kamera.  
+**Mostani döntés:** ezeket csak prezentáljuk.  
+**Vezetői dashboard:** ötlet elhangzott, **félretéve**.
 
 ---
 
-## Jelenlegi repó tartalom
+## Infrastruktúra állapot
+
+| Szolgáltatás | Állapot |
+|---|---|
+| GitHub `aisystem1488/jaffar-hu` | ✅ |
+| Vercel projekt `jaffar-hu` | ✅ deploy + env |
+| Supabase `jaffar-demo` (`kigordfjtbjsxlrdvafc`) | ✅ schema; tickets/meetings SQL külön futtatandó |
+| OpenAI | ✅ külön projekt kulcs |
+| `ADMIN_PASSWORD` | ✅ beállítva |
+| `jaffar.hu` DNS | ❌ később |
+
+### Env vars (Vercel)
+
+```
+OPENAI_API_KEY=
+SUPABASE_URL=https://kigordfjtbjsxlrdvafc.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=
+OPENAI_MODEL=gpt-4o-mini
+ADMIN_PASSWORD=
+```
+
+### Supabase SQL fájlok
+
+- `supabase/schema.sql` — conversations, messages, leads  
+- `supabase/tickets.sql` — support  
+- `supabase/meetings.sql` — meeting summaries  
+- `supabase/SETUP.md` — lépések  
+
+---
+
+## Repó struktúra (fő fájlok)
 
 ```
 jaffar-hu/
-├── index.html              # Jaffar.hu brand landing + CloudFlow demó + fázisjelző
-├── script.js               # Chat → Vercel API (/api/chat), session localStorage
-├── styles.css              # Sötétkék + narancs/kék accent, fázis UI
-├── package.json            # Vercel API függőségek
-├── vercel.json             # CORS + function config
-├── api/chat.js             # OpenAI + Supabase chat endpoint
-├── lib/
-│   ├── supabase.js
-│   └── verticals/saas.js   # CloudFlow seed (3 csomag)
-├── supabase/schema.sql     # conversations, messages, leads
-├── README.md
-├── START_HERE.md
-└── docs/
-    └── HANDOFF_20260716_CHAT_TRANSFER.md
-```
-
-### script.js — backend (Vercel API)
-```
-POST {API_BASE}/api/chat
-Body: { message, sessionId, vertical: "saas" }
-Response: { reply, phase, sessionId, conversationId, vertical }
+├── index.html, styles.css, script.js   # landing + sales demó + services
+├── support.html / support.js
+├── docs.html / docs.js
+├── meeting.html / meeting.js
+├── admin.html / admin.js
+├── api/chat.js, triage.js, ask.js, summarize.js, leads.js
+├── lib/supabase.js, tools.js
+├── lib/verticals/saas.js, support.js, meeting.js
+├── lib/knowledge/cloudflow.js, retrieve.js
+├── supabase/*.sql, SETUP.md
+├── README.md, START_HERE.md
+└── docs/HANDOFF_20260716_CHAT_TRANSFER.md
 ```
 
 ---
 
-## Supabase séma vázlat (Fázis 1-hez)
+## Amit NEM csinálunk (egyelőre)
 
-```sql
--- verticals (később, Fázis 2+)
--- products (később)
-
-create table conversations (
-  id uuid primary key default gen_random_uuid(),
-  session_id text not null,
-  vertical text default 'saas',
-  status text default 'active',
-  created_at timestamptz default now()
-);
-
-create table messages (
-  id uuid primary key default gen_random_uuid(),
-  conversation_id uuid references conversations(id),
-  role text not null, -- 'user' | 'assistant'
-  content text not null,
-  created_at timestamptz default now()
-);
-
-create table leads (
-  id uuid primary key default gen_random_uuid(),
-  conversation_id uuid references conversations(id),
-  name text,
-  email text,
-  company text,
-  qualification jsonb,  -- budget, urgency, team_size, etc.
-  recommended_product text,
-  score int,
-  summary text,
-  next_step text,
-  created_at timestamptz default now()
-);
-```
+- Valódi CRM / e-mail küldés  
+- `jaffar.hu` DNS bekötés  
+- Élő versenyfigyelő / pricing / hang / kamera demó  
+- Vezetői dashboard  
+- n8n / Make / Zapier  
 
 ---
 
-## Vercel env vars (deploykor)
+## Mérföldkövek (állapot)
 
-```
-OPENAI_API_KEY=sk-...
-SUPABASE_URL=https://xxx.supabase.co
-SUPABASE_SERVICE_ROLE_KEY=eyJ...   # API írásokhoz (service role, NE anon)
-SUPABASE_ANON_KEY=eyJ...            # fallback, ha nincs service role
-OPENAI_MODEL=gpt-4o-mini            # opcionális
-ADMIN_PASSWORD=...                  # Fázis 2 — admin védelem
-```
+### Kész
+- [x] Fázis 1: landing + `/api/chat` + Supabase séma + n8n kiváltás  
+- [x] Fázis 2: sales tools + admin + `ADMIN_PASSWORD`  
+- [x] UI polish (brand-first landing), domain deferred  
+- [x] Support triage demó  
+- [x] Doc Q&A demó  
+- [x] Meeting summarizer demó  
+- [x] Szolgáltatások prezentációs szekció  
 
----
-
-## QX projekt — NE KEVERD
-
-- **QX munka:** `C:\QX\qx-product-intelligence-v3`
-- **Jaffar magán:** `C:\Projects\jaffar-hu`
-- Korábbi chat véletlenül QX workspace-ben futott — ez hiba volt, javítva.
+### Nyitott / később
+- [ ] `tickets.sql` / `meetings.sql` futtatás ellenőrzése user oldalon (ha még nem)  
+- [ ] Domain + publikus launch  
+- [ ] Opcionális: élő demó a services irányokból (versenyfigyelő először)  
+- [ ] Vezetői dashboard (félretéve)  
 
 ---
 
-## Következő chat indító prompt (másold be)
+## QX — NE KEVERD
+
+- **QX:** `C:\QX\qx-product-intelligence-v3`  
+- **Jaffar:** `C:\Projects\jaffar-hu`  
+
+---
+
+## Indító prompt
 
 ```
-Folytassuk a Jaffar.hu AI sales agent demót.
-
-Olvasd el: docs/HANDOFF_20260716_CHAT_TRANSFER.md
-
-Állapot:
-- Repo: C:\Projects\jaffar-hu (magán projekt, NEM QX)
-- Vercel fiók kész, GitHub összekötve, projekt még nincs importálva
-- Supabase fiók van, projekt létrehozása folyamatban
-- n8n lemondva, script.js-ben még benne van a régi webhook
-
-Kezdjük a Fázis 1-et: landing frissítés + Vercel API scaffold + Supabase séma + n8n kiváltása.
-Nyelv: magyar. Első vertical: B2B SaaS.
+Folytassuk a Jaffar.hu projektet.
+Olvasd el: docs/HANDOFF_20260716_CHAT_TRANSFER.md és README.md
+Workspace: C:\Projects\jaffar-hu (magán, NEM QX)
 ```
 
 ---
@@ -233,9 +172,11 @@ Nyelv: magyar. Első vertical: B2B SaaS.
 
 | Dátum | Döntés |
 |---|---|
-| 2026-07-14 | AI sales agent demó koncepció elfogadva |
-| 2026-07-14 | n8n helyett tiszta kód (Vercel + Supabase) |
-| 2026-07-14 | jaffar-hu repó használata, GitHub Pages marad frontendnek |
-| 2026-07-16 | Projekt áthelyezve: C:\Projects\jaffar-hu (QX-től elkülönítve) |
-| 2026-07-16 | Vercel fiók létrehozva, import később |
-| 2026-07-16 | Első vertical: B2B SaaS, nyelv: magyar |
+| 2026-07-14 | AI sales agent demó; n8n helyett Vercel + Supabase |
+| 2026-07-16 | Projekt: `C:\Projects\jaffar-hu`; Vercel import; CloudFlow SaaS |
+| 2026-07-16 | Fázis 1–2 kész; admin + tool calling |
+| 2026-07-16 | Domain deferred; belső teszt URL |
+| 2026-07-16 | + Support, Doc Q&A, Meeting élő demók |
+| 2026-07-16 | 4 szolgáltatás = prezentáció only (nem élő demó) |
+| 2026-07-16 | Vezetői dashboard félretéve |
+| 2026-07-16 | Dokumentáció frissítve (README, START_HERE, handoff) |
