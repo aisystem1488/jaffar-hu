@@ -504,7 +504,7 @@ a {
 
 .demo-links {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 }
 
@@ -684,6 +684,63 @@ a {
   margin-top: 0.35rem;
   font-size: 0.78rem !important;
   color: rgba(158, 178, 201, 0.85) !important;
+}
+
+.meet-label {
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent-2);
+  margin-bottom: 0.35rem;
+}
+
+.meet-input {
+  width: 100%;
+  border: 1px solid var(--border);
+  background: rgba(7, 16, 28, 0.65);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 0.85rem 0.95rem;
+  font: inherit;
+  line-height: 1.5;
+  resize: vertical;
+  min-height: 220px;
+}
+
+.meet-input:focus {
+  outline: 1px solid rgba(110, 200, 255, 0.45);
+}
+
+.meet-send {
+  width: 100%;
+  border: none;
+  cursor: pointer;
+}
+
+.meet-status-log {
+  min-height: 0;
+  max-height: 120px;
+}
+
+.meet-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  display: grid;
+  gap: 0.35rem;
+}
+
+.meet-email {
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  background: rgba(7, 16, 28, 0.45);
+  border-radius: 8px;
+  padding: 0.75rem;
 }
 
 .site-footer {

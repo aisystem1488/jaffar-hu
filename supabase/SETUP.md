@@ -8,7 +8,8 @@
 
 1. Nyisd meg: https://supabase.com/dashboard/project/kigordfjtbjsxlrdvafc/sql/new  
 2. Másold be a teljes `schema.sql` tartalmát → **Run**
-3. Support demóhoz: másold be a `tickets.sql` tartalmát → **Run** (Ctrl+Enter)
+3. Support demóhoz: másold be a `tickets.sql` tartalmát → **Run**
+4. Meeting demóhoz: másold be a `meetings.sql` tartalmát → **Run** (Ctrl+Enter)
 
 ## 2. API kulcsok
 

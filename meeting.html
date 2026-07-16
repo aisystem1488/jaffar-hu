@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Jaffar.hu — Meeting summarizer: döntések, action itemek, follow-up e-mail."
+    />
+    <title>Jaffar.hu — Meeting summarizer demó</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="meeting.js" defer></script>
+  </head>
+  <body>
+    <div class="demo-banner" role="status">Belső demó — Meeting summarizer</div>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html">Jaffar.hu</a>
+        <nav class="nav-links">
+          <a href="index.html#demos">Demók</a>
+          <a href="docs.html">Docs</a>
+          <a href="support.html">Support</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero container">
+        <p class="eyebrow">Demó 04</p>
+        <h1 class="page-title">Meeting summarizer</h1>
+        <p class="section-lead">
+          Illeszd be a meeting jegyzetet — az agent kiszedí a döntéseket, action
+          itemeket, és ír egy follow-up e-mail vázlatot.
+        </p>
+      </section>
+
+      <section class="section demo-section">
+        <div class="container triage-layout">
+          <div class="chatbox">
+            <label class="meet-label" for="meet-input">Meeting jegyzet</label>
+            <textarea
+              id="meet-input"
+              class="meet-input"
+              rows="12"
+              placeholder="Illeszd be a jegyzetet vagy transcriptet..."
+            ></textarea>
+
+            <div class="example-chips" id="example-chips">
+              <button type="button" class="chip" data-example="sprint">
+                Sprint példa
+              </button>
+              <button type="button" class="chip" data-example="sales">
+                Sales hívás
+              </button>
+            </div>
+
+            <div class="chat-toolbar">
+              <p class="chat-meta" id="chat-meta" hidden></p>
+              <button type="button" class="button secondary" id="meet-clear">
+                Törlés
+              </button>
+            </div>
+
+            <div class="chat-input-row">
+              <button id="meet-send" type="button" class="button primary meet-send">
+                Összefoglaló készítése
+              </button>
+            </div>
+
+            <div class="chat-log meet-status-log" id="chat-log"></div>
+            <p class="chat-hint" id="chat-hint" hidden>
+              A summarizer API jelenleg nem elérhető.
+            </p>
+          </div>
+
+          <aside class="triage-panel" id="meeting-panel" aria-live="polite">
+            <p class="eyebrow">Kimenet</p>
+            <h2 id="m-title">Meeting összefoglaló</h2>
+            <p class="triage-empty" id="meeting-empty">
+              A jegyzet elküldése után itt jelennek meg a döntések, feladatok és az
+              e-mail vázlat.
+            </p>
+            <div id="meeting-body" hidden>
+              <div class="triage-block">
+                <h3>Összefoglaló</h3>
+                <p id="m-summary">—</p>
+              </div>
+              <div class="triage-block">
+                <h3>Döntések</h3>
+                <ul class="meet-list" id="m-decisions"></ul>
+              </div>
+              <div class="triage-block">
+                <h3>Action itemek</h3>
+                <ul class="meet-list" id="m-actions"></ul>
+              </div>
+              <div class="triage-block">
+                <h3>Nyitott kérdések</h3>
+                <ul class="meet-list" id="m-questions"></ul>
+              </div>
+              <div class="triage-block">
+                <h3>Follow-up e-mail</h3>
+                <pre class="meet-email" id="m-email"></pre>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© 2026 Jaffar.hu — Meeting summarizer</p>
+        <a href="index.html">Vissza a főoldalra</a>
+      </div>
+    </footer>
+  </body>
+</html>
