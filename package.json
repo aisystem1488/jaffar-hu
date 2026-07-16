@@ -1,0 +1,10 @@
+{
+  "name": "jaffar-hu",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Jaffar.hu AI sales agent demo — Vercel API",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.1",
+    "openai": "^4.77.0"
+  }
+}

@@ -99,12 +99,13 @@ Vercel = serverless API (OpenAI, Supabase) — GitHub Pages ezt nem tudja.
 ## Mérföldkövek
 
 ### Fázis 1 — Landing + működő chat (első)
-- [ ] Landing copy: Jaffar.hu AI engineering brand
-- [ ] Demó szekció + chat UI fejlesztés (fázisjelző)
-- [ ] Vercel API: `/api/chat` (OpenAI)
-- [ ] Supabase séma: conversations, messages, leads
-- [ ] `script.js`: n8n webhook → Vercel API URL
-- [ ] SaaS vertical seed adat (3 csomag, minősítő kérdések)
+- [x] Landing copy: Jaffar.hu AI engineering brand
+- [x] Demó szekció + chat UI fejlesztés (fázisjelző)
+- [x] Vercel API: `/api/chat` (OpenAI)
+- [x] Supabase séma: conversations, messages, leads
+- [x] `script.js`: n8n webhook → Vercel API URL
+- [x] SaaS vertical seed adat (3 csomag, minősítő kérdések)
+- [ ] **User:** Supabase projekt + séma futtatás + Vercel import + env vars + deploy
 
 ### Fázis 2 — Sales agent + admin
 - [ ] Agent tool calling: qualify, recommend, capture, summarize
@@ -123,19 +124,27 @@ Vercel = serverless API (OpenAI, Supabase) — GitHub Pages ezt nem tudja.
 
 ```
 jaffar-hu/
-├── index.html      # Magyar landing, chat UI, kapcsolat (űrlap disabled)
-├── script.js       # Chat → n8n webhook (LECSERÉLENDŐ)
-├── styles.css      # Sötétkék + narancs/kék accent
-├── README.md       # Minimális
+├── index.html              # Jaffar.hu brand landing + CloudFlow demó + fázisjelző
+├── script.js               # Chat → Vercel API (/api/chat), session localStorage
+├── styles.css              # Sötétkék + narancs/kék accent, fázis UI
+├── package.json            # Vercel API függőségek
+├── vercel.json             # CORS + function config
+├── api/chat.js             # OpenAI + Supabase chat endpoint
+├── lib/
+│   ├── supabase.js
+│   └── verticals/saas.js   # CloudFlow seed (3 csomag)
+├── supabase/schema.sql     # conversations, messages, leads
+├── README.md
+├── START_HERE.md
 └── docs/
-    └── HANDOFF_20260716_CHAT_TRANSFER.md  # ez a fájl
+    └── HANDOFF_20260716_CHAT_TRANSFER.md
 ```
 
-### script.js — jelenlegi backend (ideiglenes, nem működik n8n lemondás után)
+### script.js — backend (Vercel API)
 ```
-POST https://jaffar-hu.app.n8n.cloud/webhook-test/jaffar-chat
-Body: { message: text }
-Response: { reply: "..." }
+POST {API_BASE}/api/chat
+Body: { message, sessionId, vertical: "saas" }
+Response: { reply, phase, sessionId, conversationId, vertical }
 ```
 
 ---
@@ -184,8 +193,10 @@ create table leads (
 ```
 OPENAI_API_KEY=sk-...
 SUPABASE_URL=https://xxx.supabase.co
-SUPABASE_ANON_KEY=eyJ...
-ADMIN_PASSWORD=...   # egyszerű admin védelem
+SUPABASE_SERVICE_ROLE_KEY=eyJ...   # API írásokhoz (service role, NE anon)
+SUPABASE_ANON_KEY=eyJ...            # fallback, ha nincs service role
+OPENAI_MODEL=gpt-4o-mini            # opcionális
+ADMIN_PASSWORD=...                  # Fázis 2 — admin védelem
 ```
 
 ---

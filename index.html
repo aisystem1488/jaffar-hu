@@ -3,87 +3,173 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jaffar.hu - AI chatbot demo</title>
+    <meta
+      name="description"
+      content="Jaffar.hu — AI engineering demók: sales agent, lead minősítés, automatizmusok."
+    />
+    <title>Jaffar.hu — AI engineering demók</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
     <header class="site-header">
-      <div class="container">
+      <div class="container header-inner">
         <a class="brand" href="#">Jaffar.hu</a>
+        <span class="brand-tag">AI engineering</span>
       </div>
     </header>
 
     <main>
       <section class="hero container">
-        <h1>AI chatbotok és automatizmusok gyakorlótere</h1>
+        <p class="eyebrow">Magán demó projekt</p>
+        <h1>AI sales agentek és automatizmusok — gyakorlótere</h1>
         <p>
-          Egy bemutató oldal, ahol chatbotokat, űrlapokat és automatizált
-          folyamatokat tesztelek.
+          Jaffar.hu alatt AI-alapú értékesítési ügynököket, lead minősítést és
+          workflow automatizmusokat építek. Ez az oldal egy élő demó: próbáld ki,
+          hogyan viselkedik egy B2B SaaS sales agent a valós folyamatban.
         </p>
         <div class="hero-actions">
-          <a class="button primary" href="#chatbot-demo">Chatbot demo</a>
-          <a class="button secondary" href="#automation-demo">Automatizmusok</a>
+          <a class="button primary" href="#sales-demo">Sales agent demó</a>
+          <a class="button secondary" href="#how-it-works">Hogyan működik?</a>
         </div>
       </section>
 
-      <section class="section container" id="features">
-        <h2>Mit tud majd ez az oldal?</h2>
+      <section class="section container" id="how-it-works">
+        <h2>Mit mutat a demó?</h2>
         <div class="feature-grid">
-          <article class="card">AI chatbot demo</article>
-          <article class="card">Érdeklődő gyűjtés</article>
-          <article class="card">Űrlap automatizmus</article>
-          <article class="card">Google Sheet / e-mail értesítés</article>
+          <article class="card">
+            <h3>Igényfeltárás</h3>
+            <p>Megérti, mit keres a látogató és milyen problémát akar megoldani.</p>
+          </article>
+          <article class="card">
+            <h3>Lead minősítés</h3>
+            <p>3–5 célzott kérdés: csapatméret, budget, sürgősség, integrációk.</p>
+          </article>
+          <article class="card">
+            <h3>Csomag ajánlás</h3>
+            <p>Starter / Pro / Enterprise közül a legjobb illeszkedés kiválasztása.</p>
+          </article>
+          <article class="card">
+            <h3>Értékesítői összefoglaló</h3>
+            <p>Elérhetőség kérése és strukturált handoff az értékesítőnek.</p>
+          </article>
         </div>
       </section>
 
-      <section class="section container" id="chatbot-demo">
-        <h2>Chatbot demo</h2>
-        <div class="chatbox">
-          <div class="chat-log" id="chat-log">
-            <div class="chat-message bot">Valódi AI chatbot hamarosan.</div>
+      <section class="section container" id="sales-demo">
+        <div class="demo-header">
+          <div>
+            <p class="eyebrow">Első vertical</p>
+            <h2>CloudFlow — B2B SaaS sales agent</h2>
+            <p class="demo-desc">
+              A chat alatt egy fiktív projektmenedzsment platform (CloudFlow)
+              értékesítési ügynöke válaszol. A landing Jaffar.hu arculatot mutat;
+              az agent a SaaS cég nevében beszél.
+            </p>
           </div>
+          <div class="package-pills">
+            <span class="pill">Starter — 29k Ft/hó</span>
+            <span class="pill">Pro — 79k Ft/hó</span>
+            <span class="pill">Enterprise — egyedi</span>
+          </div>
+        </div>
+
+        <div class="chatbox">
+          <div class="phase-track" id="phase-track" aria-label="Értékesítési fázis">
+            <div class="phase-step active" data-phase="discovery">
+              <span class="phase-dot"></span>
+              <span class="phase-label">Igényfeltárás</span>
+            </div>
+            <div class="phase-step" data-phase="qualification">
+              <span class="phase-dot"></span>
+              <span class="phase-label">Minősítés</span>
+            </div>
+            <div class="phase-step" data-phase="recommendation">
+              <span class="phase-dot"></span>
+              <span class="phase-label">Ajánlat</span>
+            </div>
+            <div class="phase-step" data-phase="objection">
+              <span class="phase-dot"></span>
+              <span class="phase-label">Kifogások</span>
+            </div>
+            <div class="phase-step" data-phase="contact">
+              <span class="phase-dot"></span>
+              <span class="phase-label">Elérhetőség</span>
+            </div>
+            <div class="phase-step" data-phase="summary">
+              <span class="phase-dot"></span>
+              <span class="phase-label">Összefoglaló</span>
+            </div>
+          </div>
+
+          <div class="chat-log" id="chat-log">
+            <div class="chat-message bot">
+              Szia! CloudFlow ügyfélszolgálat vagyok. Miben segíthetek ma — milyen
+              kihívást szeretnél megoldani a csapatoddal?
+            </div>
+          </div>
+
           <div class="chat-input-row">
             <input
               type="text"
               id="chat-input"
-              placeholder="Írj egy üzenetet..."
+              placeholder="Pl.: 12 fős csapatunknak kell projektátláthatóság..."
               autocomplete="off"
             />
-            <button id="chat-send">Küldés</button>
+            <button id="chat-send" type="button">Küldés</button>
           </div>
+          <p class="chat-hint" id="chat-hint" hidden>
+            API nincs elérhető — deploy után állítsd be a Vercel URL-t a script.js-ben.
+          </p>
         </div>
       </section>
 
-      <section class="section container" id="automation-demo">
-        <h2>Automatizmus demo</h2>
+      <section class="section container" id="stack">
+        <h2>Technológia</h2>
         <div class="workflow">
-          <span>Látogató üzenetet ír</span>
+          <span>GitHub Pages</span>
           <span class="arrow">→</span>
-          <span>Adat mentése</span>
+          <span>Landing + chat UI</span>
           <span class="arrow">→</span>
-          <span>Értesítés küldése</span>
+          <span>Vercel API</span>
+          <span class="arrow">→</span>
+          <span>OpenAI + Supabase</span>
         </div>
       </section>
 
       <section class="section container" id="contact">
         <h2>Kapcsolat</h2>
+        <p class="contact-note">
+          Érdekel egy hasonló AI agent a saját vállalkozásodnak? Írj az agenten
+          keresztül, vagy hamarosan itt is lesz űrlap.
+        </p>
         <form class="contact-form">
           <label>
             Név
-            <input type="text" name="name" placeholder="Név" />
+            <input type="text" name="name" placeholder="Név" disabled />
           </label>
           <label>
             E-mail
-            <input type="email" name="email" placeholder="pelda@email.hu" />
+            <input type="email" name="email" placeholder="pelda@email.hu" disabled />
           </label>
           <label>
             Üzenet
-            <textarea name="message" rows="4" placeholder="Írd ide az üzeneted..."></textarea>
+            <textarea
+              name="message"
+              rows="4"
+              placeholder="Írd ide az üzeneted..."
+              disabled
+            ></textarea>
           </label>
-          <button type="button" disabled>Küldés hamarosan</button>
+          <button type="button" disabled>Fázis 2-ben aktiváljuk</button>
         </form>
       </section>
     </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© 2026 Jaffar.hu — AI engineering demók</p>
+      </div>
+    </footer>
   </body>
 </html>
