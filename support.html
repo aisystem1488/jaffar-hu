@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Jaffar.hu — Support triage agent demó: kategória, urgency, válaszvázlat."
+    />
+    <title>Jaffar.hu — Support triage demó</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="support.js" defer></script>
+  </head>
+  <body>
+    <div class="demo-banner" role="status">
+      Belső demó — support triage
+    </div>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html">Jaffar.hu</a>
+        <nav class="nav-links">
+          <a href="index.html#demos">Demók</a>
+          <a href="index.html#sales-demo">Sales agent</a>
+          <a href="admin.html">Admin</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero container">
+        <p class="eyebrow">Demó 02</p>
+        <h1 class="page-title">Support triage agent</h1>
+        <p class="section-lead">
+          Írj be egy ügyfélpanaszt — az agent kategorizál, prioritást ad, és
+          válaszvázlatot készít a support csapatnak.
+        </p>
+      </section>
+
+      <section class="section demo-section">
+        <div class="container triage-layout">
+          <div class="chatbox">
+            <div class="chat-log" id="chat-log">
+              <div class="chat-message bot">
+                Szia! CloudFlow support triage vagyok. Írd le a problémát — akár
+                nyers ügyfélüzenetként is beillesztheted.
+              </div>
+            </div>
+
+            <div class="chat-toolbar">
+              <p class="chat-meta" id="chat-meta" hidden></p>
+              <button type="button" class="button secondary chat-reset" id="chat-reset">
+                Új ticket
+              </button>
+            </div>
+
+            <div class="example-chips" id="example-chips">
+              <button type="button" class="chip" data-example="billing">
+                Számlázás
+              </button>
+              <button type="button" class="chip" data-example="outage">
+                Kiesés
+              </button>
+              <button type="button" class="chip" data-example="access">
+                Hozzáférés
+              </button>
+            </div>
+
+            <div class="chat-input-row">
+              <input
+                type="text"
+                id="chat-input"
+                placeholder="Pl.: Harmadik napja nem tudok belépni, holnap demónk van..."
+                autocomplete="off"
+              />
+              <button id="chat-send" type="button">Küldés</button>
+            </div>
+            <p class="chat-hint" id="chat-hint" hidden>
+              A triage API jelenleg nem elérhető.
+            </p>
+          </div>
+
+          <aside class="triage-panel" id="triage-panel" aria-live="polite">
+            <p class="eyebrow">Ticket kártya</p>
+            <h2>Triage eredmény</h2>
+            <p class="triage-empty" id="triage-empty">
+              Az első üzenet után itt jelenik meg a kategória, urgency és
+              válaszvázlat.
+            </p>
+            <div id="triage-body" hidden>
+              <dl class="triage-fields">
+                <div>
+                  <dt>Tárgy</dt>
+                  <dd id="t-subject">—</dd>
+                </div>
+                <div>
+                  <dt>Kategória</dt>
+                  <dd id="t-category">—</dd>
+                </div>
+                <div>
+                  <dt>Urgency</dt>
+                  <dd id="t-urgency">—</dd>
+                </div>
+                <div>
+                  <dt>Hangnem</dt>
+                  <dd id="t-sentiment">—</dd>
+                </div>
+              </dl>
+              <div class="triage-block">
+                <h3>Válaszvázlat</h3>
+                <p id="t-draft">—</p>
+              </div>
+              <div class="triage-block">
+                <h3>Belső következő lépés</h3>
+                <p id="t-action">—</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© 2026 Jaffar.hu — Support triage demó</p>
+        <a href="index.html">Vissza a főoldalra</a>
+      </div>
+    </footer>
+  </body>
+</html>

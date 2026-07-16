@@ -7,8 +7,8 @@
 ## 1. Séma futtatása (SQL Editor)
 
 1. Nyisd meg: https://supabase.com/dashboard/project/kigordfjtbjsxlrdvafc/sql/new  
-2. Másold be a teljes `schema.sql` tartalmát  
-3. **Run** (Ctrl+Enter)
+2. Másold be a teljes `schema.sql` tartalmát → **Run**
+3. Support demóhoz: másold be a `tickets.sql` tartalmát → **Run** (Ctrl+Enter)
 
 ## 2. API kulcsok
 
