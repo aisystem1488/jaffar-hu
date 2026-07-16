@@ -105,12 +105,13 @@ Vercel = serverless API (OpenAI, Supabase) — GitHub Pages ezt nem tudja.
 - [x] Supabase séma: conversations, messages, leads
 - [x] `script.js`: n8n webhook → Vercel API URL
 - [x] SaaS vertical seed adat (3 csomag, minősítő kérdések)
-- [ ] **User:** Supabase projekt + séma futtatás + Vercel import + env vars + deploy
+- [x] **User:** Supabase projekt + séma futtatás + Vercel import + env vars + deploy
 
 ### Fázis 2 — Sales agent + admin
-- [ ] Agent tool calling: qualify, recommend, capture, summarize
-- [ ] `/admin`: lead lista, score, összefoglaló
-- [ ] Egyszerű jelszóvédelem adminra
+- [x] Agent tool calling: qualify, recommend, capture, summarize
+- [x] `/admin`: lead lista, score, összefoglaló
+- [x] Egyszerű jelszóvédelem adminra
+- [ ] **User:** Vercel env `ADMIN_PASSWORD` beállítása + redeploy ellenőrzés
 
 ### Fázis 3 — Domain + polish
 - [ ] Vercel deploy + env vars

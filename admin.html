@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jaffar.hu — Admin (leadek)</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="admin.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html">Jaffar.hu</a>
+        <span class="brand-tag">Admin</span>
+      </div>
+    </header>
+
+    <main class="container admin-main">
+      <section class="section">
+        <h1>Sales lead admin</h1>
+        <p class="admin-intro">
+          CloudFlow demó beszélgetésekből mentett leadek. Egyszerű jelszóvédelem
+          (<code>ADMIN_PASSWORD</code>).
+        </p>
+
+        <form class="admin-login" id="admin-login">
+          <label>
+            Jelszó
+            <input type="password" id="admin-password" autocomplete="current-password" />
+          </label>
+          <button type="submit" class="button primary">Belépés</button>
+          <button type="button" class="button secondary" id="admin-logout" hidden>
+            Kilépés
+          </button>
+        </form>
+        <p class="chat-hint" id="admin-error" hidden></p>
+      </section>
+
+      <section class="section" id="admin-panel" hidden>
+        <div class="admin-toolbar">
+          <h2>Leadek</h2>
+          <button type="button" class="button secondary" id="admin-refresh">Frissítés</button>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table" id="leads-table">
+            <thead>
+              <tr>
+                <th>Dátum</th>
+                <th>Név</th>
+                <th>Email</th>
+                <th>Cég</th>
+                <th>Score</th>
+                <th>Csomag</th>
+                <th>Fázis</th>
+              </tr>
+            </thead>
+            <tbody id="leads-body">
+              <tr>
+                <td colspan="7">Nincs lead.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="admin-detail" id="lead-detail" hidden>
+          <h3>Részletek</h3>
+          <pre id="lead-detail-body"></pre>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

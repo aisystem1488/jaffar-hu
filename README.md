@@ -2,56 +2,36 @@
 
 **Jaffar.hu** — AI sales agent demó oldal (magán projekt).
 
-- **Élő frontend:** https://aisystem1488.github.io/jaffar-hu/
+- **Vercel (élő + API):** https://jaffar-hu.vercel.app/
+- **GitHub Pages:** https://aisystem1488.github.io/jaffar-hu/
+- **Admin:** https://jaffar-hu.vercel.app/admin.html
 - **Stack:** GitHub Pages + Vercel API + Supabase + OpenAI
 
-## Fázis 1 — mit tartalmaz
+## Fázis 1–2 — mit tartalmaz
 
-- Landing: Jaffar.hu AI engineering brand + CloudFlow SaaS demó
-- Chat UI fázisjelzővel (6 lépés)
-- Vercel API: `POST /api/chat`
-- Supabase séma: `supabase/schema.sql`
-- SaaS vertical seed: `lib/verticals/saas.js`
+- Landing: Jaffar.hu brand + CloudFlow SaaS demó + fázisjelző
+- Chat API: `POST /api/chat` (OpenAI tool calling)
+- Tools: `qualify_lead`, `recommend_product`, `capture_contact`, `summarize_lead`
+- Leads API: `GET /api/leads` (jelszó: `x-admin-password`)
+- Admin UI: lead lista, score, összefoglaló
+- Supabase: `conversations`, `messages`, `leads`
 
-## Helyi fejlesztés (API)
-
-```bash
-npm install
-npx vercel dev
-```
-
-Állítsd be a `.env` fájlt (ne commitold):
+## Env vars (Vercel)
 
 ```
 OPENAI_API_KEY=sk-...
 SUPABASE_URL=https://xxx.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=eyJ...
 OPENAI_MODEL=gpt-4o-mini
+ADMIN_PASSWORD=...
 ```
 
-Helyi teszthez a `script.js`-ben: `var API_BASE = "http://localhost:3000";`
+## Helyi fejlesztés
 
-## Deploy
-
-### 1. Supabase
-
-1. Új projekt: `jaffar-demo` (Frankfurt)
-2. Futtasd: `supabase/schema.sql` a SQL Editorban
-3. Másold a URL-t és a **service role** kulcsot (API írásokhoz)
-
-### 2. Vercel
-
-1. Import: `aisystem1488/jaffar-hu`
-2. Env vars:
-   - `OPENAI_API_KEY`
-   - `SUPABASE_URL`
-   - `SUPABASE_SERVICE_ROLE_KEY`
-   - `OPENAI_MODEL` (opcionális, default: gpt-4o-mini)
-3. Deploy után frissítsd a `script.js`-ben az `API_BASE` URL-t
-
-### 3. GitHub Pages
-
-Push a `main` branchre — a statikus oldal automatikusan frissül.
+```bash
+npm install
+npx vercel dev
+```
 
 ## Dokumentáció
 

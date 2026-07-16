@@ -1,10 +1,13 @@
 const OpenAI = require("openai");
 const { getSupabase } = require("../lib/supabase");
 const { getVertical, buildSystemPrompt, PHASES } = require("../lib/verticals/saas");
+const { TOOL_DEFINITIONS, executeTool } = require("../lib/tools");
 
 const VALID_PHASES = PHASES.map(function (p) {
   return p.id;
 });
+
+const MAX_TOOL_ROUNDS = 3;
 
 function setCors(res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -12,25 +15,12 @@ function setCors(res) {
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 }
 
-function parseAssistantPayload(raw) {
-  if (!raw) {
-    return { reply: "Sajnos nem sikerült válaszolni. Próbáld újra.", phase: "discovery" };
-  }
-
-  try {
-    var parsed = JSON.parse(raw);
-    var phase = VALID_PHASES.includes(parsed.phase) ? parsed.phase : "discovery";
-    return {
-      reply: parsed.reply || raw,
-      phase: phase
-    };
-  } catch (error) {
-    return { reply: raw, phase: "discovery" };
-  }
-}
-
 function generateSessionId() {
   return "sess_" + Date.now() + "_" + Math.random().toString(36).slice(2, 10);
+}
+
+function normalizePhase(phase, fallback) {
+  return VALID_PHASES.includes(phase) ? phase : fallback || "discovery";
 }
 
 async function getOrCreateConversation(supabase, sessionId, vertical) {
@@ -81,6 +71,15 @@ async function loadMessages(supabase, conversationId) {
   return result.data || [];
 }
 
+function detectObjectionPhase(userMessage, currentPhase) {
+  var text = (userMessage || "").toLowerCase();
+  var objectionHints = ["drága", "költség", "nem most", "gondolkod", "máshol", "olcsóbb", "később"];
+  var hit = objectionHints.some(function (w) {
+    return text.indexOf(w) !== -1;
+  });
+  return hit ? "objection" : currentPhase;
+}
+
 module.exports = async function handler(req, res) {
   setCors(res);
 
@@ -114,6 +113,7 @@ module.exports = async function handler(req, res) {
   var conversationId = null;
   var currentPhase = "discovery";
   var history = [];
+  var latestLead = null;
 
   if (supabase) {
     try {
@@ -132,11 +132,19 @@ module.exports = async function handler(req, res) {
     }
   }
 
+  currentPhase = detectObjectionPhase(message, currentPhase);
+
   var openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
   var chatMessages = [
     { role: "system", content: buildSystemPrompt(vertical) },
-    { role: "system", content: "Jelenlegi fázis: " + currentPhase + "." }
+    {
+      role: "system",
+      content:
+        "Jelenlegi fázis: " +
+        currentPhase +
+        ". Használj toolokat, amikor új adatot kapsz vagy ajánlasz / összefoglalsz."
+    }
   ];
 
   history.forEach(function (msg) {
@@ -145,34 +153,122 @@ module.exports = async function handler(req, res) {
 
   chatMessages.push({ role: "user", content: message });
 
-  var completion;
+  var assistantReply = "";
+  var finalPhase = currentPhase;
+
   try {
-    completion = await openai.chat.completions.create({
-      model: process.env.OPENAI_MODEL || "gpt-4o-mini",
-      messages: chatMessages,
-      temperature: 0.6,
-      response_format: { type: "json_object" }
-    });
+    for (var round = 0; round < MAX_TOOL_ROUNDS; round++) {
+      var completion = await openai.chat.completions.create({
+        model: process.env.OPENAI_MODEL || "gpt-4o-mini",
+        messages: chatMessages,
+        tools: TOOL_DEFINITIONS,
+        tool_choice: "auto",
+        temperature: 0.6
+      });
+
+      var choice = completion.choices[0];
+      var assistantMessage = choice && choice.message ? choice.message : null;
+
+      if (!assistantMessage) {
+        break;
+      }
+
+      chatMessages.push(assistantMessage);
+
+      var toolCalls = assistantMessage.tool_calls || [];
+
+      if (!toolCalls.length) {
+        assistantReply = assistantMessage.content || "";
+        break;
+      }
+
+      for (var i = 0; i < toolCalls.length; i++) {
+        var call = toolCalls[i];
+        var toolName = call.function && call.function.name;
+        var rawArgs = (call.function && call.function.arguments) || "{}";
+        var args = {};
+
+        try {
+          args = JSON.parse(rawArgs);
+        } catch (parseError) {
+          args = {};
+        }
+
+        var toolResult = {
+          ok: false,
+          error: "Tool futtatás sikertelen",
+          phase: null,
+          lead: null
+        };
+
+        try {
+          toolResult = await executeTool(supabase, conversationId, toolName, args);
+          if (toolResult.lead) {
+            latestLead = toolResult.lead;
+          }
+          if (toolResult.phase) {
+            finalPhase = normalizePhase(toolResult.phase, finalPhase);
+          }
+        } catch (toolError) {
+          console.error("Tool error:", toolError);
+          toolResult = { ok: false, error: String(toolError.message || toolError) };
+        }
+
+        chatMessages.push({
+          role: "tool",
+          tool_call_id: call.id,
+          content: JSON.stringify({
+            ok: toolResult.ok,
+            message: toolResult.message || toolResult.error,
+            leadId: toolResult.lead && toolResult.lead.id,
+            recommended_product: toolResult.lead && toolResult.lead.recommended_product,
+            score: toolResult.lead && toolResult.lead.score
+          })
+        });
+      }
+
+      if (choice.finish_reason === "stop") {
+        assistantReply = assistantMessage.content || assistantReply;
+        break;
+      }
+    }
+
+    if (!assistantReply) {
+      var followUp = await openai.chat.completions.create({
+        model: process.env.OPENAI_MODEL || "gpt-4o-mini",
+        messages: chatMessages.concat([
+          {
+            role: "system",
+            content: "Most adj rövid magyar választ a látogatónak tool hívás nélkül."
+          }
+        ]),
+        temperature: 0.6
+      });
+      assistantReply =
+        (followUp.choices[0] &&
+          followUp.choices[0].message &&
+          followUp.choices[0].message.content) ||
+        "Köszönöm! Folytassuk.";
+    }
   } catch (aiError) {
     console.error("OpenAI error:", aiError);
     return res.status(502).json({ error: "AI szolgáltatás hiba" });
   }
 
-  var assistantRaw = completion.choices[0]?.message?.content || "";
-  var assistant = parseAssistantPayload(assistantRaw);
+  finalPhase = normalizePhase(finalPhase, currentPhase);
 
   if (supabase && conversationId) {
     try {
       await supabase.from("messages").insert({
         conversation_id: conversationId,
         role: "assistant",
-        content: assistant.reply
+        content: assistantReply
       });
 
       await supabase
         .from("conversations")
         .update({
-          phase: assistant.phase,
+          phase: finalPhase,
           updated_at: new Date().toISOString()
         })
         .eq("id", conversationId);
@@ -182,10 +278,13 @@ module.exports = async function handler(req, res) {
   }
 
   return res.status(200).json({
-    reply: assistant.reply,
-    phase: assistant.phase,
+    reply: assistantReply,
+    phase: finalPhase,
     sessionId: sessionId,
     conversationId: conversationId,
-    vertical: vertical.id
+    vertical: vertical.id,
+    leadId: latestLead && latestLead.id,
+    score: latestLead && latestLead.score,
+    recommendedProduct: latestLead && latestLead.recommended_product
   });
 };
