@@ -543,6 +543,46 @@ a {
   font-size: 0.95rem;
 }
 
+.service-list {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--border);
+}
+
+.service-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.1rem 1.4rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.service-num {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--accent-2);
+  line-height: 1;
+}
+
+.service-body h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.45rem;
+}
+
+.service-body p {
+  color: var(--muted);
+  font-size: 0.98rem;
+  max-width: 62ch;
+  line-height: 1.5;
+}
+
+.service-for {
+  margin-top: 0.55rem !important;
+  font-size: 0.88rem !important;
+  color: rgba(158, 178, 201, 0.9) !important;
+}
+
 .triage-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
