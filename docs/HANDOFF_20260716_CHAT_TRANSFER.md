@@ -59,16 +59,17 @@ jaffar-hu.vercel.app
 
 ## Szolgáltatások (prezentáció only)
 
-Landing `#services` — **nincs élő demó / API** ezekre:
+Landing `#services` — **nincs élő demó / API** ezekre (prezentáció):
 
-1. Webes kutató és versenyfigyelő  
-2. Ár- és árrésfigyelő (Pricing & Margin Monitor, nem auto-pricing)  
-3. Hangagentek  
-4. Kameraelemzés (szűk use case, pl. sérült csomagolás)
+1. **AI termék-kategorizáló** (kiemelt — megvalósított irány; QX-t nem nevezzük a publikus copyban)  
+2. Webes kutató és versenyfigyelő  
+3. Ár- és árrésfigyelő (Pricing & Margin Monitor, nem auto-pricing)  
+4. Hangagentek  
+5. Kameraelemzés (szűk use case)
 
-**Javasolt későbbi build sorrend** (ha élő demót csinálnánk): versenyfigyelő → árrés → hang → kamera.  
-**Mostani döntés:** ezeket csak prezentáljuk.  
-**Vezetői dashboard:** ötlet elhangzott, **félretéve**.
+Anchor: `#catalog-classifier` — hirdetés landoló pontja.  
+**Vezetői dashboard:** félretéve.  
+**QX:** belső projekt; a Jaffar.hu-n csak általánosított case study, nem az ügyfélapp.
 
 ---
 

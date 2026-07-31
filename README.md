@@ -21,12 +21,10 @@
 
 ## Szolgáltatások (prezentáció, nem élő demó)
 
-A landing `#services` szekciója — üzleti irányok, amiket tervezünk / szállítunk:
+A landing `#services` szekciója — üzleti irányok (prezentáció):
 
-1. Webes kutató és versenyfigyelő  
-2. Ár- és árrésfigyelő (Pricing & Margin Monitor)  
-3. Hangagentek  
-4. Kameraelemzés (szűk use case)
+1. **AI termék-kategorizáló** (`#catalog-classifier`) — kiemelt, megvalósított  
+2. Versenyfigyelő · 3. Árrésfigyelő · 4. Hangagent · 5. Kamera  
 
 Vezetői dashboard ötlet: **félretéve**.
 
