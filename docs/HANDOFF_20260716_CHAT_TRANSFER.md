@@ -21,10 +21,13 @@
 
 ## Mi ez?
 
-AI engineering bemutató:
+AI engineering oldal — **szerepe még hibrid** (2026-08-19):
 
-1. **Élő demók** — kipróbálható agentek (OpenAI + tool / RAG)
-2. **Szolgáltatások** — prezentáció a landingen (`#services`), nem élő API
+1. **Szolgáltatások** (`#services`) — amit megrendelhetsz (kategorizáló, SEO, tudásgráf, …)
+2. **Labor** (`#demos`) — élő agentek; CloudFlow = fiktív demó-cég, nem a termék
+
+Munkairány: a kettőt **elválasztani a copyban**, nem eldönteni még 100% lander vs. 100% demó.  
+Sorrend: szolgáltatások elöl, labor bizonyítékként.
 
 **Nyelv:** magyar.  
 **Fiktív brand a demókban:** CloudFlow (B2B SaaS).  
@@ -184,6 +187,6 @@ Workspace: C:\Projects\jaffar-hu (magán, NEM QX)
 | 2026-07-16 | 4 szolgáltatás = prezentáció only (nem élő demó) |
 | 2026-07-31 | AI termék-kategorizáló a landingre (prezentáció, QX nélkül) |
 | 2026-08-18 | AI SEO optimalizálás külön szolgáltatás (`#seo`) |
-| 2026-08-18 | Tudásgráf külön szolgáltatás (`#knowledge-graph`), értékesítő copy |
+| 2026-08-19 | Oldal szerepe: hibrid (szolgáltatások + labor); még nem tiszta sales landing |
 | 2026-07-16 | Vezetői dashboard félretéve |
 | 2026-07-16 | Dokumentáció frissítve (README, START_HERE, handoff) |

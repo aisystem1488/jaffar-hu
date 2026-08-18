@@ -145,7 +145,7 @@ a {
   font-size: clamp(1.35rem, 2.8vw, 1.85rem);
   font-weight: 500;
   line-height: 1.35;
-  max-width: 22ch;
+  max-width: 28ch;
   color: var(--text);
 }
 
