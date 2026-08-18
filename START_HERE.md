@@ -21,7 +21,7 @@ Workspace: `C:\Projects\jaffar-hu`
 
 ## Szolgáltatások (csak copy a landingön)
 
-Versenyfigyelő · Árrésfigyelő · Hangagent · Kamera · **AI termék-kategorizáló** (`#catalog-classifier`)  
+**AI termék-kategorizáló** (`#catalog-classifier`) · **AI SEO** (`#seo`) · Versenyfigyelő · Árrésfigyelő · Hangagent · Kamera  
 (Vezetői dashboard: félretéve. QX app nincs a publikus oldalon — csak általánosított prezentáció.)
 
 ## Új chat indításakor

@@ -64,6 +64,12 @@ Landing `#services` — **nincs élő demó / API** ezekre (prezentáció):
 1. **AI termék-kategorizáló** (kiemelt — megvalósított irány; QX-t nem nevezzük a publikus copyban)  
    Kategóriafa + címkézés/attribútumok + SEO szövegek + képleírás; később tudásgráf / knowledge graph csatlakozás.  
    Anchor: `#catalog-classifier`  
+2. **AI SEO optimalizálás** (`#seo`) — terméccím, meta, leírás, alt, belső linkek a kategorizáló / tudásgráf kimenetére épülve  
+3. Webes kutató és versenyfigyelő  
+4. Ár- és árrésfigyelő (Pricing & Margin Monitor, nem auto-pricing)  
+5. Hangagentek  
+6. Kameraelemzés (szűk use case)
+
 **Vezetői dashboard:** félretéve.  
 **QX:** belső projekt; a Jaffar.hu-n csak általánosított case study, nem az ügyfélapp.
 
@@ -175,5 +181,7 @@ Workspace: C:\Projects\jaffar-hu (magán, NEM QX)
 | 2026-07-16 | Domain deferred; belső teszt URL |
 | 2026-07-16 | + Support, Doc Q&A, Meeting élő demók |
 | 2026-07-16 | 4 szolgáltatás = prezentáció only (nem élő demó) |
+| 2026-07-31 | AI termék-kategorizáló a landingre (prezentáció, QX nélkül) |
+| 2026-08-18 | AI SEO optimalizálás külön szolgáltatás (`#seo`) |
 | 2026-07-16 | Vezetői dashboard félretéve |
 | 2026-07-16 | Dokumentáció frissítve (README, START_HERE, handoff) |
