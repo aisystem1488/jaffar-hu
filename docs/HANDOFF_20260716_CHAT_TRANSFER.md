@@ -64,7 +64,7 @@ Landing `#services` — **nincs élő demó / API** ezekre (prezentáció):
 1. **AI termék-kategorizáló** (kiemelt — megvalósított irány; QX-t nem nevezzük a publikus copyban)  
    Kategóriafa + címkézés/attribútumok + SEO szövegek + képleírás; később tudásgráf / knowledge graph csatlakozás.  
    Anchor: `#catalog-classifier`  
-2. **AI SEO optimalizálás** (`#seo`) — önálló SEO (title, meta, leírás, alt, struktúra); a kategorizáló / tudásgráf opcionális extra bemenet, nem feltétel  
+2. **AI SEO** (`#seo`) — értékesítő copy: miért talál meg a vevő; önálló megrendelés, kategorizáló nem feltétel  
 3. Webes kutató és versenyfigyelő  
 4. Ár- és árrésfigyelő (Pricing & Margin Monitor, nem auto-pricing)  
 5. Hangagentek  
