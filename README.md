@@ -24,7 +24,7 @@
 A landing `#services` szekciója — üzleti irányok (prezentáció):
 
 1. **AI termék-kategorizáló** (`#catalog-classifier`) — kiemelt, megvalósított  
-2. **AI SEO optimalizálás** (`#seo`) — katalógus szövegek, meta, alt, belső linkek  
+2. **AI SEO optimalizálás** (`#seo`) — önálló; webshop / céges oldal / tartalom; opcionálisan ráül a kategorizálóra  
 3. Versenyfigyelő · 4. Árrésfigyelő · 5. Hangagent · 6. Kamera
 
 Vezetői dashboard ötlet: **félretéve**.
