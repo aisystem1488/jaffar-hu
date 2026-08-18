@@ -577,6 +577,12 @@ a {
   line-height: 1.5;
 }
 
+.service-body a {
+  color: var(--accent-2);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
 .service-for {
   margin-top: 0.55rem !important;
   font-size: 0.88rem !important;

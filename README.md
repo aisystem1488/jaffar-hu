@@ -24,8 +24,9 @@
 A landing `#services` szekciója — üzleti irányok (prezentáció):
 
 1. **AI termék-kategorizáló** (`#catalog-classifier`) — kiemelt, megvalósított  
-2. **AI SEO** (`#seo`) — marketinges copy: organikus forgalom, skálázott szövegek; önálló, kategorizáló opcionális plusz  
-3. Versenyfigyelő · 4. Árrésfigyelő · 5. Hangagent · 6. Kamera
+2. **AI SEO** (`#seo`) — értékesítő copy; önálló  
+3. **Tudásgráf** (`#knowledge-graph`) — terméktudás, ami a cégben marad  
+4. Versenyfigyelő · 5. Árrésfigyelő · 6. Hangagent · 7. Kamera
 
 Vezetői dashboard ötlet: **félretéve**.
 
