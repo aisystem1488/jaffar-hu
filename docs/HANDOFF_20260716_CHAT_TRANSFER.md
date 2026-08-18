@@ -1,7 +1,9 @@
 # CHAT TRANSFER — Jaffar.hu AI Engineering
 
-> **Olvasd el ezt először**, ha új Cursor chatben folytatod.
-> Utoljára frissítve: 2026-07-16
+> **Aktuális átadó (2026-08-19):** [`CHAT_TRANSFER_20260819.md`](CHAT_TRANSFER_20260819.md) + [`HANDOFF_20260819.md`](HANDOFF_20260819.md).  
+> Ez a fájl a korábbi (július) napló; ne ebből indíts új chatet.
+
+> Utoljára ez a fájl kiegészítve: 2026-08-19 (pointer az új átadóra).
 
 ---
 
@@ -167,11 +169,7 @@ jaffar-hu/
 
 ## Indító prompt
 
-```
-Folytassuk a Jaffar.hu projektet.
-Olvasd el: docs/HANDOFF_20260716_CHAT_TRANSFER.md és README.md
-Workspace: C:\Projects\jaffar-hu (magán, NEM QX)
-```
+Lásd: [`CHAT_TRANSFER_20260819.md`](CHAT_TRANSFER_20260819.md)
 
 ---
 

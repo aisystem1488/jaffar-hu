@@ -1,39 +1,29 @@
 # START HERE — Jaffar.hu
 
-**Magán projekt.** Nem kapcsolódik a QX Product Intelligence munkához.  
-Workspace: `C:\Projects\jaffar-hu`
+**Magán projekt.** Nem QX. Workspace: `C:\Projects\jaffar-hu`
 
-## Gyors kontextus
+## Új chat
 
-- **Cél:** AI engineering bemutató — élő agent demók + szolgáltatások prezentációja
-- **Élő:** https://jaffar-hu.vercel.app/
-- **Stack:** Vercel + Supabase + OpenAI
-- **n8n:** nem használjuk
-- **Domain:** később; egyelőre nem publikus launch
-
-## Élő demók
-
-1. Sales agent — `/` + `/api/chat`
-2. Support triage — `/support.html` + `/api/triage`
-3. Doc Q&A — `/docs.html` + `/api/ask`
-4. Meeting summarizer — `/meeting.html` + `/api/summarize`
-5. Admin — `/admin.html` + `/api/leads` (`ADMIN_PASSWORD`)
-
-## Szolgáltatások (csak copy a landingön)
-
-**AI termék-kategorizáló** (`#catalog-classifier`) · **AI SEO** (`#seo`) · **Tudásgráf** (`#knowledge-graph`) · Versenyfigyelő · Árrésfigyelő · Hangagent · Kamera  
-(Vezetői dashboard: félretéve. QX app nincs a publikus oldalon — csak általánosított prezentáció.)
-
-## Új chat indításakor
-
-1. Olvasd el: [`docs/HANDOFF_20260716_CHAT_TRANSFER.md`](docs/HANDOFF_20260716_CHAT_TRANSFER.md)
-2. Nézd: [`README.md`](README.md)
-3. Folytasd abból, ami a handoff „Következő” / döntések részében van
+1. [`docs/CHAT_TRANSFER_20260819.md`](docs/CHAT_TRANSFER_20260819.md) — **ezt először**
+2. [`docs/HANDOFF_20260819.md`](docs/HANDOFF_20260819.md) — állapot + munka
+3. [`README.md`](README.md) — URL-ek, API-k
 
 ## Indító prompt
 
 ```
-Folytassuk a Jaffar.hu projektet.
-Olvasd el: docs/HANDOFF_20260716_CHAT_TRANSFER.md és README.md
+Folytassuk a Jaffar.hu-t.
+
+Olvasd el:
+- docs/CHAT_TRANSFER_20260819.md
+- docs/HANDOFF_20260819.md
+
 Workspace: C:\Projects\jaffar-hu (magán, NEM QX)
+
+Téma: az oldal még nem döntötte el, hogy demó vagy landing — ezt beszéljük át, aztán csiszolunk (CTA, fókusz).
 ```
+
+## Gyors
+
+- Élő: https://jaffar-hu.vercel.app/
+- Hibrid: szolgáltatások + labor
+- Domain: később

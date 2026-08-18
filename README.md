@@ -59,5 +59,7 @@ Frontend `API_BASE` a `script.js` / `support.js` / `docs.js` / `meeting.js` / `a
 
 ## Dokumentáció
 
-- [`START_HERE.md`](START_HERE.md) — új chat indítás
-- [`docs/HANDOFF_20260716_CHAT_TRANSFER.md`](docs/HANDOFF_20260716_CHAT_TRANSFER.md) — döntések + állapot
+- [`START_HERE.md`](START_HERE.md) — új chat
+- [`docs/CHAT_TRANSFER_20260819.md`](docs/CHAT_TRANSFER_20260819.md) — **aktuális chat-átadó**
+- [`docs/HANDOFF_20260819.md`](docs/HANDOFF_20260819.md) — állapot 2026-08-19
+- [`docs/HANDOFF_20260716_CHAT_TRANSFER.md`](docs/HANDOFF_20260716_CHAT_TRANSFER.md) — korábbi napló
